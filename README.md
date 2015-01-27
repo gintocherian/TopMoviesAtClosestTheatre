@@ -5,4 +5,4 @@ Implementation of an API Mashup involving the following two API's,
 
 2) GraceNote OnConnect Movie Showtimes API(http://developer.tmsapi.com/docs/data_v1/movies/Movie_showtimes)
 
-The function of this application is to list the top 10 movies int the Box Office according the RottenTomatoes. On clicking a movie shows the showtimes(within US and Canada) for that movie within 5 miles of your location for that day.
+The function of this application is to list the top 10 movies in the Box Office according the RottenTomatoes. On clicking a movie shows the showtimes(within US and Canada) for that movie within 5 miles of your location for that day.

@@ -1,3 +1,10 @@
+/**
+ * Created by Ginto Cherian on 27/01/2015.
+ *
+ * Encapsulation of the response for the API call defined at http://developer.tmsapi.com/docs/data_v1/movies/Movie_showtimes_by_zip_code
+ * Note: that IMAX or other listings like 3D will be shown as additional
+ * theatre listing.
+ */
 package com.github.gintocherian.topmoviesatclosesttheatre;
 
 import android.util.Log;
@@ -11,11 +18,6 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-/**
- * Created by gcherian on 2015/01/26.
- * Note: that IMAX or other listings like 3D will be shown as additional
- * theatre listing.
- */
 public class MovieShowtime {
     private String tmsId;
     private int rootId;
@@ -48,9 +50,7 @@ public class MovieShowtime {
         showtime.addAll(anotherMovie.getShowtime());
     }
 
-    // Returns a BoxOfficeMovie given the expected JSON
-    // BoxOfficeMovie.fromJson(movieJsonDictionary)
-    // Stores the `title`, `year`, `synopsis`, `poster` and `criticsScore`
+    // Returns a MovieShowtime given the expected JSON
     public static MovieShowtime fromJson(JSONObject jsonObject, String requiredTitle) {
         MovieShowtime b = new MovieShowtime();
         try {
@@ -65,11 +65,11 @@ public class MovieShowtime {
             b.theatreReleaseDate = sdf.parse(jsonObject.getString("releaseDate"));
             b.showtime = TheatreShowtime.fromJson(jsonObject.getJSONArray("showtimes"));
         } catch (JSONException e) {
-            Log.e("BoxOfficeActivity", e.toString());
+            Log.e("MovieShowtime", e.toString());
             return null;
         }
         catch (ParseException e) {
-            Log.e("BoxOfficeActivity", e.toString());
+            Log.e("MovieShowtime", e.toString());
             return null;
         }
         // Return new object

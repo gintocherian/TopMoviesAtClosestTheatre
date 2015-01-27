@@ -1,3 +1,8 @@
+/**
+ * Created by Ginto Cherian on 27/01/2015.
+ *
+ * This is the activity used to display the closest theatres playing selected movie
+ */
 package com.github.gintocherian.topmoviesatclosesttheatre;
 
 import android.app.Activity;
@@ -37,6 +42,7 @@ public class MovieShowtimeActivity extends Activity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_movie_showtimes);
 
+        //Initialize GUI components
         lvTheatreShowtime = (ListView) findViewById(R.id.lvMovieShowtimes);
         ArrayList<TheatreShowtime> aMovies = new ArrayList<TheatreShowtime>();
         adapterTheatreShowtime = new TheaterShowtimeAdapter(this, aMovies);
@@ -46,9 +52,9 @@ public class MovieShowtimeActivity extends Activity {
         movieTitle = (TextView) findViewById(R.id.movieTitle);
         movieDate = (TextView) findViewById(R.id.movieDate);
         spinner = (ProgressBar)findViewById(R.id.progressBar1);
+
         // Load movie data
         movie = (BoxOfficeMovie) getIntent().getSerializableExtra(BoxOfficeActivity.MOVIE_DETAIL_KEY);
-
         movieTitle.setText(movie.getTitle());
         movieDate.setText(" : " + getCurrentDate());
         Picasso.with(this).load(movie.getLargePosterUrl()).
@@ -56,7 +62,7 @@ public class MovieShowtimeActivity extends Activity {
                 into(ivPosterImage);
         spinner.setVisibility(View.VISIBLE);
 
-        // Get the showtime
+        // Get the showtimes
         fetchMovieListings(movie.getTitle());
     }
 
@@ -70,20 +76,22 @@ public class MovieShowtimeActivity extends Activity {
             @Override
             public void onSuccess(JSONArray response) {
                 try {
+                    //Note that in this case the response is a JSONArray
                     ArrayList<MovieShowtime> movieShowtimes = MovieShowtime.fromJson(response, requiredTitle);
                     // Load model objects into the adapter
                     for (TheatreShowtime theatreShowtime : movieShowtimes.get(0).getShowtime()) {
                         adapterTheatreShowtime.add(theatreShowtime);
                     }
+                    //Hide the Progress Bar
                     spinner.setVisibility(View.GONE);
                 } catch (Exception e) {
-                    Log.e("BoxOfficeActivity", e.toString());
+                    Log.e("MovieShowtimeActivity", e.toString());
                 }
             }
         });
     }
 
-    //Getting the last known location
+    //Getting the last known GPS location
     private Location getLastKnownLocation()
     {
         Criteria cri= new Criteria();

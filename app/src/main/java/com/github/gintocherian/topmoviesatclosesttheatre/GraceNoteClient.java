@@ -1,5 +1,7 @@
 /**
- * Created by Ginto Cherian on 25/01/2015.
+ * Created by Ginto Cherian on 27/01/2015.
+
+ * Client to connect to the GraceNote API
  *
  * The API call documentation is available at http://developer.tmsapi.com/docs/data_v1/movies/Movie_showtimes_by_zip_code
  */
@@ -15,7 +17,7 @@ import com.loopj.android.http.RequestParams;
 
 
 public class GraceNoteClient {
-    private final String API_KEY = "f4g98jrhjgdpqrjcb3k65g87";
+    private final String API_KEY = "74zktfhu6mfgrwpwvb4v3ryr";
     private final String API_BASE_URL = "http://data.tmsapi.com/v1/";
     private AsyncHttpClient client;
 
@@ -46,13 +48,4 @@ public class GraceNoteClient {
         Calendar c = Calendar.getInstance();
         return String.format("%1$tY-%1$tm-%1$td", c);
     }
-
-    private Location getCurrentLocation()
-    {
-        /*
-        ToDo return current location
-         */
-        return null;
-    }
-
 }

@@ -1,6 +1,11 @@
 /**
- * Created by Ginto Cherian on 25/01/2015.
+ * Created by Ginto Cherian on 27/01/2015.
+ *
+ * Client to connect to the RottenTomatoes API
+ *
+ * The API call documentation is available at http://developer.rottentomatoes.com/docs/read/json/v10/Box_Office_Movies
  */
+
 package com.github.gintocherian.topmoviesatclosesttheatre;
 
 import com.loopj.android.http.AsyncHttpClient;

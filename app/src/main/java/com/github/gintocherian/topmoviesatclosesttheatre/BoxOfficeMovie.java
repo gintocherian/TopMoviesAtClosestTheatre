@@ -1,6 +1,9 @@
 /**
- * Created by Ginto Cherian on 25/01/2015.
+ * Created by Ginto Cherian on 27/01/2015.
+ *
+ * Encapsulation of the response for the API call defined at at http://developer.tmsapi.com/docs/data_v1/movies/Movie_showtimes_by_zip_code
  */
+
 package com.github.gintocherian.topmoviesatclosesttheatre;
 
 import android.text.TextUtils;
@@ -70,6 +73,7 @@ public class BoxOfficeMovie  implements Serializable{
             b.posterUrl = jsonObject.getJSONObject("posters").getString("thumbnail");
             b.largePosterUrl = jsonObject.getJSONObject("posters").getString("detailed");
             b.criticsScore = jsonObject.getJSONObject("ratings").getInt("critics_score");
+
             // Construct simple array of cast names
             b.castList = new ArrayList<String>();
             JSONArray abridgedCast = jsonObject.getJSONArray("abridged_cast");
@@ -77,7 +81,7 @@ public class BoxOfficeMovie  implements Serializable{
                 b.castList.add(abridgedCast.getJSONObject(i).getString("name"));
             }
         } catch (JSONException e) {
-            Log.e("BoxOfficeActivity", e.toString());
+            Log.e("BoxOfficeMovie", e.toString());
             return null;
         }
         // Return new object

@@ -1,3 +1,9 @@
+/**
+ * Created by Ginto Cherian on 27/01/2015.
+ *
+ * Partial encapsulation of the response for the API call defined at http://developer.tmsapi.com/docs/data_v1/movies/Movie_showtimes_by_zip_code
+ * This only takes care of the theatre listings
+ */
 package com.github.gintocherian.topmoviesatclosesttheatre;
 
 import android.util.Log;
@@ -12,9 +18,6 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 
-/**
- * Created by gcherian on 2015/01/26.
- */
 public class TheatreShowtime {
     private int theatreId;
     private String country;
@@ -55,9 +58,9 @@ public class TheatreShowtime {
         return quals;
     }
 
-    // Returns a BoxOfficeMovie given the expected JSON
-    // BoxOfficeMovie.fromJson(movieJsonDictionary)
-    // Stores the `title`, `year`, `synopsis`, `poster` and `criticsScore`
+    // Returns a TheatreShowtime given the expected JSON
+    // TheatreShowtime.fromJson(theatreShowtimeJsonDictionary)
+    // Stores the `theatreId`, `country`, `theatreName`, `showtimes` and `quals`
     public static TheatreShowtime fromJson(JSONObject jsonObject) {
         TheatreShowtime b = new TheatreShowtime();
         try {
@@ -77,19 +80,19 @@ public class TheatreShowtime {
             }
 
         } catch (JSONException e) {
-            Log.e("BoxOfficeActivity", e.toString());
+            Log.e("TheatreShowtime", e.toString());
             return null;
         }
         catch (ParseException e) {
-            Log.e("BoxOfficeActivity", e.toString());
+            Log.e("TheatreShowtime", e.toString());
             return null;
         }
         // Return new object
         return b;
     }
 
-    // Decodes array of box office movie json results into business model objects
-    // BoxOfficeMovie.fromJson(jsonArrayOfMovies)
+    // Decodes array of TheatreShowtime json results into business model objects
+    // TheatreShowtime.fromJson(jsonArrayOfShowtimes)
     public static ArrayList<TheatreShowtime> fromJson(JSONArray jsonArray) {
         ArrayList<TheatreShowtime> businesses = new ArrayList<TheatreShowtime>();
         ArrayList<Integer> theatreIds = new ArrayList<Integer>();

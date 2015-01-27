@@ -1,6 +1,9 @@
 /**
- * Created by Ginto Cherian on 25/01/2015.
+ * Created by Ginto Cherian on 27/01/2015.
+ *
+ * The adapter used to load the BoxOfficeMovie List to the ListView
  */
+
 package com.github.gintocherian.topmoviesatclosesttheatre;
 
 import java.util.ArrayList;
@@ -26,6 +29,7 @@ public class BoxOfficeMoviesAdapter extends ArrayAdapter<BoxOfficeMovie> {
     public View getView(int position, View convertView, ViewGroup parent) {
         // Get the data item for this position
         BoxOfficeMovie movie = getItem(position);
+
         // Check if an existing view is being reused, otherwise inflate the view
         if (convertView == null) {
             LayoutInflater inflater = LayoutInflater.from(getContext());
@@ -36,11 +40,13 @@ public class BoxOfficeMoviesAdapter extends ArrayAdapter<BoxOfficeMovie> {
         TextView tvCriticsScore = (TextView) convertView.findViewById(R.id.tvCriticsScore);
         TextView tvCast = (TextView) convertView.findViewById(R.id.tvCast);
         ImageView ivPosterImage = (ImageView) convertView.findViewById(R.id.ivPosterImage);
+
         // Populate the data into the template view using the data object
         tvTitle.setText(movie.getTitle());
         tvCriticsScore.setText("Score: " + movie.getCriticsScore() + "%");
         tvCast.setText(movie.getCastList());
         Picasso.with(getContext()).load(movie.getPosterUrl()).into(ivPosterImage);
+
         // Return the completed view to render on screen
         return convertView;
     }

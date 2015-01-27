@@ -1,3 +1,9 @@
+/**
+ * Created by Ginto Cherian on 27/01/2015.
+ *
+ * This is the Initial Activity and loads top Rotten tomatoes Box Office API
+ * Defaults to 10 movies
+ */
 package com.github.gintocherian.topmoviesatclosesttheatre;
 
 import android.app.Activity;
@@ -28,6 +34,8 @@ public class BoxOfficeActivity extends Activity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_box_office);
+
+        //Initialize GUI components
         lvMovies = (ListView) findViewById(R.id.lvMovies);
         ArrayList<BoxOfficeMovie> aMovies = new ArrayList<BoxOfficeMovie>();
         adapterMovies = new BoxOfficeMoviesAdapter(this, aMovies);
@@ -62,7 +70,7 @@ public class BoxOfficeActivity extends Activity {
         });
     }
 
-
+    //Handling call for the click operation
     public void setupMovieSelectedListener() {
         lvMovies.setOnItemClickListener(new OnItemClickListener() {
             @Override
